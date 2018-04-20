@@ -1,0 +1,19 @@
+{
+  "port": "9000",
+  "environment": "development",
+  "db_url": "",
+  "oauth": {
+    "github": {
+      "clientID": "get_your_own",
+      "clientSecret": "get_your_own",
+      "callbackURL": "http://127.0.0.1:4000/auth/github/callback"
+    },
+    "twitter": {
+      "consumerKey": "get_your_own",
+      "consumerSecret": "get_your_own",
+      "callbackURL": "http://127.0.0.1:4000/auth/twitter/callback",
+      "userProfileURL": "https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true"
+    }
+  },
+  "session_secret": "SESSION_SECRET"
+}

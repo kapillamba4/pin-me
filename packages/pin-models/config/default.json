@@ -1,0 +1,7 @@
+{
+  "database": "pin_me_db",
+  "username": "root",
+  "password": "root",
+  "host": "localhost",
+  "dialect": "postgres"
+}

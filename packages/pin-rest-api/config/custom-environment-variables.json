@@ -1,0 +1,6 @@
+{
+  "port": "PORT",
+  "environment": "NODE_ENV",
+  "db_url": "DB_URL",
+  "session_secret": "SESSION_SECRET"
+}

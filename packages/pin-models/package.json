@@ -1,6 +1,14 @@
 {
   "name": "pin-models",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
+    "config": "^1.30.0",
+    "pg": "^7.4.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.37.6"
+  }
 }

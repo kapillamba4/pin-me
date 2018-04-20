@@ -1,5 +1,12 @@
 {
+	"name": "pin-me",
+	"scripts": {
+		"start": "(cd packages/pin-rest-api; node index.js)",
+		"clean": "lerna clean --yes",
+		"bootstrap": "yarn clean && lerna bootstrap --loglevel verbose"
+	},
 	"devDependencies": {
 		"lerna": "^2.10.2"
-	}
+	},
+	"license": "MIT"
 }

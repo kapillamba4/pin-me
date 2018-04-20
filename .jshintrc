@@ -1,0 +1,8 @@
+{
+  "esversion": 6,
+  "node": true,
+  "camelcase": true,
+  "maxlen": 80,
+  "forin": true,
+  "devel": true
+}
