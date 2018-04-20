@@ -1,4 +1,5 @@
 'use strict';
 module.exports = exports = {
-    userModelName: "user"
+    userModelName: "user",
+    pinsModelName: "pins"
 };
