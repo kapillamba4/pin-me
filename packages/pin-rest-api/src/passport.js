@@ -1,6 +1,6 @@
 'use strict';
-const localStrategy = require('passport-local').Strategy;
-const User = require('pin-models').User;
+const { Strategy: localStrategy } = require('passport-local');
+const { User } = require('pin-models');
 
 module.exports = exports = passport => {
     passport.serializeUser((user, done) => {

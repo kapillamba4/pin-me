@@ -1,0 +1,425 @@
+{
+	"info": {
+		"_postman_id": "35cd7bcd-6fbe-4eb5-975b-3fca2f240774",
+		"name": "pin-me",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"description": "",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "kapil4",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "text",
+									"description": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9000/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:9000/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:9000/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "kapil4",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "first_name",
+									"value": "Kapil",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "last_name",
+									"value": "Lamba",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "email",
+									"value": "kapillamba4@gmail.com",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/x-www-form-urlencoded",
+									"type": "text",
+									"description": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9000/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:9000/auth/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:9000/auth/profile",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"auth",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "pins",
+			"description": null,
+			"item": [
+				{
+					"name": "Me",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:9000/pins/me",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"pins",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Me",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "pin",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "title",
+									"value": "abc",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "description",
+									"value": "fas",
+									"type": "text",
+									"description": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9000/pins/me",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"pins",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "My pins",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:9000/pins",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"pins"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "likes",
+			"description": "",
+			"item": [
+				{
+					"name": "Toggle",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "pinId",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9000/likes/toggle",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"likes",
+								"toggle"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "comments",
+			"description": "",
+			"item": [
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "pinId",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "comment",
+									"value": "Hello world comment",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9000/comments/add",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"comments",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "pinId",
+									"value": "1",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "comment",
+									"value": "Hello world comment",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "time_stamp",
+									"value": "1524425002752",
+									"type": "text",
+									"description": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9000/comments/remove",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"comments",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic"
+	}
+}

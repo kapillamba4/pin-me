@@ -1,24 +1,27 @@
 'use strict';
 const constants = require('./Constants');
 module.exports = exports = (sequelize, Datatypes) => {
-    const Pins = sequelize.define(constants.pinsModelName, {
+    const Comment = sequelize.define(constants.commentsModelName, {
         "id": {
             type: Datatypes.INTEGER,
             primaryKey: true,
             allowNull: false,
             autoIncrement: true
         },
-        "title": {
-            type: Datatypes.STRING,
+        "pin_id": {
+            type: Datatypes.INTEGER,
             allowNull: false,
         },
-        "description": Datatypes.STRING,
-        "creator_username": {
+        "username": {
             type: Datatypes.STRING,
             allowNull: false
         },
-        "published_on": {
+        "time_stamp": {
             type: Datatypes.BIGINT,
+            allowNull: false,
+        },
+        "comment": {
+            type: Datatypes.STRING,
             allowNull: false
         }
     }, {
@@ -27,5 +30,5 @@ module.exports = exports = (sequelize, Datatypes) => {
         "timestamps": false
     });
 
-    return Pins;
+    return Comment;
 };

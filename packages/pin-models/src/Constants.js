@@ -1,5 +1,7 @@
 'use strict';
 module.exports = exports = {
     userModelName: "user",
-    pinsModelName: "pins"
+    pinsModelName: "pins",
+    likesModelName: "likes",
+    commentsModelName: "comments"
 };

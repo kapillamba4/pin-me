@@ -3,7 +3,10 @@ ensureAuthenticated = (req, res, next) => {
         return next();
     }
 
-    res.status(403).redirect('/');
+    res.status(403).json({
+        success: false,
+        message: 'authentication failed'
+    });
 };
 
 module.exports = exports = {

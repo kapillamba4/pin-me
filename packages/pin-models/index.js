@@ -15,5 +15,8 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
 
 module.exports = exports = {
     User: require('./src/User')(sequelize, Sequelize.DataTypes),
+    Pin: require('./src/Pin')(sequelize, Sequelize.DataTypes),
+    Like: require('./src/Like')(sequelize, Sequelize.DataTypes),
+    Comment: require('./src/Comment')(sequelize, Sequelize.DataTypes),
     syncDB: () => sequelize.sync()
 };

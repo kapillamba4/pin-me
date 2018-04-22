@@ -7,7 +7,7 @@ const morgan = require('morgan');
 const config = require('config');
 const session = require('express-session');
 const passport = require('passport');
-
+const compression = require('compression');
 require('pin-models').syncDB();
 
 if (!process.env.NODE_ENV) {
@@ -15,6 +15,7 @@ if (!process.env.NODE_ENV) {
 }
 
 app.use(morgan(config.environment === 'development' ? 'dev' : 'prod'));
+app.use(compression());
 app.use(express.urlencoded({
     extended: true
 }));
