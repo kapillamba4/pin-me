@@ -11,24 +11,26 @@ const compression = require('compression');
 require('pin-models').syncDB();
 
 if (!process.env.NODE_ENV) {
-    process.env.NODE_ENV = 'development';
+  process.env.NODE_ENV = 'development';
 }
 
 app.use(morgan(config.environment === 'development' ? 'dev' : 'prod'));
 app.use(compression());
-app.use(express.urlencoded({
+app.use(
+  express.urlencoded({
     extended: true
-}));
+  })
+);
 
 app.use(express.json());
 const sessionOpts = {
-    secret: config.session_secret,
-    resave: true,
-    saveUninitialized: true,
-    cookie: {
-        expires: new Date(253402300000000),
-        secure: false
-    }
+  secret: config.session_secret,
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    expires: new Date(253402300000000),
+    secure: false
+  }
 };
 
 app.use(session(sessionOpts));
@@ -38,11 +40,11 @@ app.use(passport.session());
 require('./src/passport')(passport);
 
 app.get('/', (req, res) => {
-    res.send('Hello!');
+  res.send('Hello!');
 });
 
 require('./src/routes/index')(app);
 
-app.listen(config.port, function () {
-    console.log(`Listening at ${config.port}`);
+app.listen(config.port, function() {
+  console.log(`Listening at ${config.port}`);
 });
