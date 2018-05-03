@@ -25,11 +25,13 @@ module.exports = exports = (sequelize, Datatypes) => {
       },
       path: {
         type: Datatypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
       },
       filename: {
         type: Datatypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
       },
       url: Datatypes.STRING
     },

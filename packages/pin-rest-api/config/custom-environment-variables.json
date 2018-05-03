@@ -2,5 +2,6 @@
   "port": "PORT",
   "environment": "NODE_ENV",
   "db_url": "DB_URL",
-  "session_secret": "SESSION_SECRET"
+  "session_secret": "SESSION_SECRET",
+  "clarifai_app_key": "CLARIFAI_APP_KEY"
 }

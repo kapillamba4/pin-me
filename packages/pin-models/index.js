@@ -18,5 +18,7 @@ module.exports = exports = {
   Pin: require('./src/Pin')(sequelize, Sequelize.DataTypes),
   Like: require('./src/Like')(sequelize, Sequelize.DataTypes),
   Comment: require('./src/Comment')(sequelize, Sequelize.DataTypes),
+  Album: require('./src/Album')(sequelize, Sequelize.DataTypes),
+  AlbumPinBridge: require('./src/AlbumPinBridge')(sequelize, Sequelize.DataTypes),
   syncDB: () => sequelize.sync()
 };

@@ -1,6 +1,7 @@
 'use strict';
 const { Pin } = require('pin-models');
 const path = require('path');
+const _ = require('lodash');
 
 async function addPin(req, res) {
   if (!req.file) {
@@ -10,6 +11,7 @@ async function addPin(req, res) {
     });
   }
 
+  req.clarifai = req.clarifai.tags.map(el => _.pick(el, ['name', 'value'])).splice(10);
   try {
     await Pin.create({
       title: req.body.title,
@@ -22,18 +24,37 @@ async function addPin(req, res) {
 
     return res.json({
       success: true,
-      message: 'Pin uploaded'
+      message: 'Image uploaded'
     });
   } catch (error) {
     // TODO: remove file from filesystem
     return res.status(500).json({
       success: false,
-      message: 'Pin not added to the database',
+      message: 'Image is not added to the database',
+      error: error.message
+    });
+  }
+}
+
+async function getPins(req, res) {
+  try {
+    if (!req.query.pin) {
+      const pins = await Pin.findAll({ where: { creator_username: req.user.username } });
+      res.json(pins);
+    } else {
+      const pin = await Pin.findOne({ where: { id: req.query.pin } });
+      res.sendFile(path.join(req.baseImagePath, pin.filename));
+    }
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: 'Cannot retrieve image(s)',
       error: error.message
     });
   }
 }
 
 module.exports = exports = {
-  addPin
+  addPin,
+  getPins
 };

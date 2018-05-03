@@ -1,6 +1,8 @@
 'use strict';
 const router = require('express').Router();
 const authMiddleware = require('../middlewares').ensureAuthenticated;
+const classifierMiddleware = require('../middlewares').classifyImage;
+const uploadCheckMiddleware = require('../middlewares').checkUpload;
 const { pinsController } = require('pin-helpers');
 const multer = require('multer');
 const path = require('path');
@@ -26,7 +28,7 @@ router.get('/me', (req, res) => {
   pinsController.getPins(req, res);
 });
 
-router.post('/me', authMiddleware, upload.single('pin'), (req, res) => {
+router.post('/me', authMiddleware, upload.single('pin'), uploadCheckMiddleware, classifierMiddleware, (req, res) => {
   pinsController.addPin(req, res);
 });
 
@@ -36,6 +38,11 @@ router.get('/', authMiddleware, (req, res) => {
   } else {
     res.redirect(`${req.baseUrl}/me`);
   }
+});
+
+router.get('/download', authMiddleware, (req, res) => {
+  req.baseImagePath = path.resolve('./images');
+  pinsController.getPins(req, res);
 });
 
 module.exports = exports = router;
