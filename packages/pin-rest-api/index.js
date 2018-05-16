@@ -9,12 +9,19 @@ const config = require('config');
 const session = require('express-session');
 const passport = require('passport');
 const compression = require('compression');
+const cors = require('cors')
+
 require('pin-models').syncDB();
 
 if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = 'development';
 }
 
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods:['GET','POST'],
+  credentials: true 
+}))
 app.use(morgan(config.environment === 'development' ? 'dev' : 'prod'));
 app.use(compression());
 app.use(
@@ -26,7 +33,7 @@ app.use(
 app.use(express.json());
 const sessionOpts = {
   secret: config.session_secret,
-  resave: true,
+  resave: false,
   saveUninitialized: true,
   cookie: {
     expires: new Date(253402300000000),

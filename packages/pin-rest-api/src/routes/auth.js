@@ -29,7 +29,7 @@ router.post(
   })
 );
 
-router.all('/logout', authMiddleware, (req, res) => {
+router.get('/logout', authMiddleware, (req, res) => {
   req.logout();
   req.session.destroy((err) => {
     if (err) {
