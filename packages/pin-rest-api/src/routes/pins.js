@@ -3,6 +3,7 @@ const router = require('express').Router();
 const authMiddleware = require('../middlewares').ensureAuthenticated;
 const classifierMiddleware = require('../middlewares').classifyImage;
 const uploadCheckMiddleware = require('../middlewares').checkUpload;
+const addDimensions = require('../middlewares').addDimensions;
 const { pinsController } = require('pin-helpers');
 const multer = require('multer');
 const path = require('path');
@@ -28,7 +29,7 @@ router.get('/me', (req, res) => {
   pinsController.getPins(req, res);
 });
 
-router.post('/me', authMiddleware, upload.single('pin'), uploadCheckMiddleware, classifierMiddleware, (req, res) => {
+router.post('/me', authMiddleware, upload.single('pin'), uploadCheckMiddleware, addDimensions, classifierMiddleware, (req, res) => {
   pinsController.addPin(req, res);
 });
 

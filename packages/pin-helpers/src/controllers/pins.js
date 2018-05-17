@@ -19,7 +19,9 @@ async function addPin(req, res) {
       creator_username: req.user.dataValues.username,
       published_on: Date.now(),
       path: req.file.path,
-      filename: req.file.filename
+      filename: req.file.filename,
+      height: req.file.height,
+      width: req.file.width
     });
 
     return res.json({

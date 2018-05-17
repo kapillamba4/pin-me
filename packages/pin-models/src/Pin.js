@@ -33,7 +33,15 @@ module.exports = exports = (sequelize, Datatypes) => {
         allowNull: false,
         unique: true
       },
-      url: Datatypes.STRING
+      url: Datatypes.STRING,
+      height: {
+        type: Datatypes.INTEGER,
+        allowNull: false
+      },
+      width: {
+        type: Datatypes.INTEGER,
+        allowNull: false
+      }
     },
     {
       freezeTableName: true,

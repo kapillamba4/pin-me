@@ -1,6 +1,7 @@
 const Clarifai = require('clarifai');
 const config = require('config');
 const fs = require('fs');
+const sizeOf = require('image-size');
 
 ensureAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
@@ -58,8 +59,19 @@ checkUpload = (req, res, next) => {
   next();
 };
 
+addDimensions = (req, res, next) => {
+  const dimensions = sizeOf(req.file.path);
+  req.file = {
+    ...req.file,
+    ...dimensions,
+  };
+
+  next();
+};
+
 module.exports = exports = {
   ensureAuthenticated,
   classifyImage,
-  checkUpload
+  checkUpload,
+  addDimensions
 };
