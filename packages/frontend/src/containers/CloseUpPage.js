@@ -23,7 +23,7 @@ const CloseUpPageLayout = styled.div`
     width: 80%;
     margin-left: 10%;
     margin-right: 10%;
-    margin-top: 72px;
+    margin-top: 62px;
   }
   #close-up-content {
     padding-top: 2%;
@@ -35,20 +35,28 @@ const CloseUpPageLayout = styled.div`
     background-size: auto;
     display: inline-block;
     width: 100%;
-    max-height: 800px;
+    max-height: 600px;
     border-radius: 8px;
   }
   #close-up-left-partition,
   #close-up-right-partition {
     vertical-align: top;
     display: inline-block;
-    width: 38%;
+    width: 46%;
     padding-left: 2%;
     padding-right: 2%;
     max-height: 800px;
-    h1 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       margin-top: 0;
     }
+  }
+  #close-up-right-partition {
+    height: 600px;
   }
   #close-up-content {
     padding-top: 2%;
@@ -57,10 +65,30 @@ const CloseUpPageLayout = styled.div`
     background-color: white;
   }
   #close-up-comments {
-    width: 50%;
+    width: 100%;
     list-style: none;
     margin: 0;
     padding: 0;
+  }
+
+  #comment-wrapper {
+    margin-bottom: 12px;
+    #comment-avatar {
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      border: 4px solid white;
+      height: 36px;
+      width: 36px;
+      vertical-align: top;
+    }
+    #comment-box {
+      display: inline-block;
+      vertical-align: top;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      border: 4px solid white;
+      width: calc(100% - 84px);
+      margin-left: 12px;
+      height: auto;
+    }
   }
 `;
 
@@ -133,13 +161,30 @@ class CloseUpPage extends Component {
         <div id={'close-up-wrapper'}>
           <div id={'close-up-content'}>
             <div id={'close-up-left-partition'}>
-              <img src={image} id={'close-up-image'} />
+              <img src={image} id={'close-up-image'} alt="" />
             </div>
             <div id={'close-up-right-partition'}>
               <h1>{heading}</h1>
               <h3>{description}</h3>
               <h5>Pin by {author}</h5>
-              <ul id={'close-up-comments'}>{comments.map((el) => <li>{el.comment}</li>)}</ul>
+              <ul id={'close-up-comments'}>
+                {comments.map((el) => (
+                  <div id={'comment-wrapper'}>
+                    <img id={'comment-avatar'} src="https://placeimg.com/480/460/any" alt="" />
+                    <div id={'comment-box'}>
+                      <div id={'comment-head'}>
+                        <small id={'comment-name'}>John Doe</small>
+                      </div>
+                      <div id={'comment-content'}>
+                        <small>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium
+                          vitae, praesentium optio
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
