@@ -32,15 +32,19 @@ router.post('/me', authMiddleware, upload.single('pin'), uploadCheckMiddleware, 
   pinsController.addPin(req, res);
 });
 
-router.get('/', authMiddleware, (req, res) => {
-  if (req.param('username')) {
-    res.send(`List of pins by user ${req.param('username')}`);
-  } else {
-    res.redirect(`${req.baseUrl}/me`);
-  }
+router.get('/search', (req, res) => {
+  pinsController.getSearchImages(req, res);
 });
 
-router.get('/download', authMiddleware, (req, res) => {
+router.get('/all', (req, res) => {
+  res.redirect(`/pins/search?title=&page=${req.query.page}`);
+});
+
+router.get('/', authMiddleware, (req, res) => {
+  pinsController.getUserImages(req, res)
+});
+
+router.get('/download', (req, res) => {
   req.baseImagePath = path.resolve('./images');
   pinsController.getPins(req, res);
 });

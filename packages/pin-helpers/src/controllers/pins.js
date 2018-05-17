@@ -1,5 +1,5 @@
 'use strict';
-const { Pin } = require('pin-models');
+const { Pin, Op } = require('pin-models');
 const path = require('path');
 const _ = require('lodash');
 
@@ -54,7 +54,65 @@ async function getPins(req, res) {
   }
 }
 
+async function getSearchImages(req, res) {
+  try {
+      const limit = 10;
+      const offset = parseInt(req.query.page)*limit;
+      const data = await Pin
+        .findAndCountAll({
+          where: {
+            title: {
+              [Op.like]: `%${req.query.title}%`
+            }
+          },
+          offset: offset,
+          limit: limit
+        });
+
+      res.json({
+        offset,
+        limit,
+        ...data
+      });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: 'Cannot retrieve image(s)',
+      error: error.message
+    });
+  }
+}
+
+async function getUserImages(req, res) {
+  try {
+    const limit = 10;
+    const offset = parseInt(req.query.page)*limit;
+    const data = await Pin
+      .findAndCountAll({
+        where: {
+          creator_username: req.query.username
+        },
+        offset: offset,
+        limit: limit
+      });
+
+    res.json({
+      offset,
+      limit,
+      ...data
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: 'Cannot retrieve image(s)',
+      error: error.message
+    });
+  }
+}
+
 module.exports = exports = {
   addPin,
-  getPins
+  getPins,
+  getSearchImages,
+  getUserImages
 };

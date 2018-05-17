@@ -21,7 +21,7 @@ app.use(cors({
   origin: 'http://localhost:3000',
   methods:['GET','POST'],
   credentials: true 
-}))
+}));
 app.use(morgan(config.environment === 'development' ? 'dev' : 'prod'));
 app.use(compression());
 app.use(

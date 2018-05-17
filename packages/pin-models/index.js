@@ -20,5 +20,6 @@ module.exports = exports = {
   Comment: require('./src/Comment')(sequelize, Sequelize.DataTypes),
   Album: require('./src/Album')(sequelize, Sequelize.DataTypes),
   AlbumPinBridge: require('./src/AlbumPinBridge')(sequelize, Sequelize.DataTypes),
-  syncDB: () => sequelize.sync()
+  syncDB: () => sequelize.sync(),
+  Op: Sequelize.Op
 };
