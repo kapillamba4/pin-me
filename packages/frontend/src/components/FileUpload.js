@@ -3,7 +3,7 @@ import DropZone from 'react-dropzone';
 
 export default class FileUpload extends Component {
   state = {
-    accept: '',
+    accept: 'image/*',
     files: [],
     dropZoneActive: false
   };
@@ -29,28 +29,36 @@ export default class FileUpload extends Component {
     });
   }
 
-  componentDidMount() {
-    document.addEventListener('dragenter', (e) => {
-      const dt = e.dataTransfer;
-      if (dt && dt.types && (dt.types.indexOf ? dt.types.indexOf('Files') !== -1 : dt.types.contains('Files'))) {
-        this.setState({
-          dropZoneActive: true
-        });
-      }
-    });
+  dragEnterDropZone(e) {
+    const dt = e.dataTransfer;
+    if (dt && dt.types && (dt.types.indexOf ? dt.types.indexOf('Files') !== -1 : dt.types.contains('Files'))) {
+      this.setState({
+        dropZoneActive: true
+      });
+    }
+  }
 
-    document.addEventListener('drop', (e) => {
-      const dt = e.dataTransfer;
-      if (dt && dt.types && (dt.types.indexOf ? dt.types.indexOf('Files') !== -1 : dt.types.contains('Files'))) {
-        setTimeout(
-          () =>
-            this.setState({
-              dropZoneActive: false
-            }),
-          4000
-        );
-      }
-    });
+  dropFileDropZone(e) {
+    const dt = e.dataTransfer;
+    if (dt && dt.types && (dt.types.indexOf ? dt.types.indexOf('Files') !== -1 : dt.types.contains('Files'))) {
+      setTimeout(
+        () =>
+          this.setState({
+            dropZoneActive: false
+          }),
+        4000
+      );
+    }
+  }
+
+  componentDidMount() {
+    document.addEventListener('dragenter', this.dragEnterDropZone);
+    document.addEventListener('drop', this.dropFileDropZone);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('dragenter', this.dragEnterDropZone);
+    document.removeEventListener('drop', this.dropFileDropZone);
   }
 
   render() {
@@ -89,9 +97,9 @@ export default class FileUpload extends Component {
         className={'dropzone'}
         style={overlayStyle}
         accept={accept}
-        onDrop={this.onDrop.bind(this)}
-        onDragEnter={this.onDragEnter.bind(this)}
-        onDragLeave={this.onDragLeave.bind(this)}
+        onDrop={::this.onDrop}
+        onDragEnter={::this.onDragEnter}
+        onDragLeave={::this.onDragLeave}
       >
         {dropZoneActive && (
           <div className={'uploader'} style={uploaderStyle}>
