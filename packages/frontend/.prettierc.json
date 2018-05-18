@@ -5,5 +5,5 @@
   "trailingComma": "none",
   "semi": true,
   "bracketSpacing": true,
-  "arrowParens": "always"
+  "arrowParens": "as-needed"
 }

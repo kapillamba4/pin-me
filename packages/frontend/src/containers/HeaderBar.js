@@ -3,7 +3,7 @@ import Button from '../components/Button';
 import Logo from '../components/Logo';
 import styled from 'styled-components';
 import { bindActionCreators } from 'redux';
-import authActions from '../actions/auth';
+import actions from '../actions';
 import { connect } from 'react-redux';
 import SearchBar from '../components/SearchBar';
 import AuthPopup from '../components/AuthPopup';
@@ -124,6 +124,6 @@ class HeaderBar extends Component {
 }
 
 const mapStateToProps = (state) => ({ ...state.auth });
-const matchDispatchToProps = (dispatch) => bindActionCreators({ ...authActions }, dispatch);
+const matchDispatchToProps = (dispatch) => bindActionCreators({ ...actions.auth }, dispatch);
 
 export default connect(mapStateToProps, matchDispatchToProps)(HeaderBar);

@@ -46,6 +46,7 @@
     "react-click-outside": "tj/react-click-outside",
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.3.2",
+    "react-dropzone": "^4.2.9",
     "react-motion": "^0.5.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
