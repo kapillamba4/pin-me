@@ -52,13 +52,13 @@ export default class FileUpload extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener('dragenter', this.dragEnterDropZone);
-    document.addEventListener('drop', this.dropFileDropZone);
+    document.addEventListener('dragenter', ::this.dragEnterDropZone);
+    document.addEventListener('drop', ::this.dropFileDropZone);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('dragenter', this.dragEnterDropZone);
-    document.removeEventListener('drop', this.dropFileDropZone);
+    document.removeEventListener('dragenter', ::this.dragEnterDropZone);
+    document.removeEventListener('drop', ::this.dropFileDropZone);
   }
 
   render() {

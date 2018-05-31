@@ -3,6 +3,9 @@ import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 import allReducers from '../reducers';
 
-export default createStore(combineReducers({
-  ...allReducers
-}), applyMiddleware(thunk, createLogger()));
+export default createStore(
+  combineReducers({
+    ...allReducers
+  }),
+  applyMiddleware(thunk, createLogger())
+);

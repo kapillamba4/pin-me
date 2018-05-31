@@ -3,6 +3,7 @@ import placeholder from '../images/placeholder.png';
 import styled from 'styled-components';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 const CloseUpPageLayout = styled.div`
   background: url(${placeholder}) no-repeat center center fixed;
@@ -26,9 +27,9 @@ const CloseUpPageLayout = styled.div`
     margin-top: 62px;
   }
   #close-up-content {
-    padding-top: 2%;
-    padding-bottom: 2%;
+    padding: 2%;
     border-radius: 8px;
+    height: 90%;
     background-color: white;
   }
   #close-up-image {
@@ -43,9 +44,9 @@ const CloseUpPageLayout = styled.div`
     vertical-align: top;
     display: inline-block;
     width: 46%;
-    padding-left: 2%;
-    padding-right: 2%;
-    max-height: 800px;
+    padding: 2%;
+    height: 82%;
+    overflow-y: auto;
     h1,
     h2,
     h3,
@@ -54,9 +55,6 @@ const CloseUpPageLayout = styled.div`
     h6 {
       margin-top: 0;
     }
-  }
-  #close-up-right-partition {
-    height: 600px;
   }
   #close-up-content {
     padding-top: 2%;
@@ -70,7 +68,6 @@ const CloseUpPageLayout = styled.div`
     margin: 0;
     padding: 0;
   }
-
   #comment-wrapper {
     margin-bottom: 12px;
     #comment-avatar {
@@ -88,6 +85,55 @@ const CloseUpPageLayout = styled.div`
       width: calc(100% - 84px);
       margin-left: 12px;
       height: auto;
+    }
+  }
+  .back-button {
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 20px solid #eee;
+    position: relative;
+    margin: 2%;
+    h2 {
+      background: #eee;
+      display: block;
+      width: 112px;
+      margin-top: -20px;
+      margin-left: 20px;
+      height: 40px;
+      line-height: 40px;
+      color: white;
+      text-align: left;
+      margin-bottom: 0;
+    }
+    &:hover {
+      h2 {
+        color: #fcfbf7;
+        transition: all 200ms linear;
+      }
+      cursor: pointer;
+    }
+  }
+ 
+  @media only screen and (max-width: 768px) {
+    #close-up-left-partition,
+    #close-up-right-partition {
+      display: block;
+      width: 94%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #close-up-wrapper {
+      flex-direction: column;
+      width: 98%;
+    }
+    #close-up-content {
+      height: auto;
+      margin: 4%;
+    }
+    #close-up-wrapper {
+      margin: 0;
     }
   }
 `;
@@ -154,22 +200,29 @@ class CloseUpPage extends Component {
     ]
   };
 
+  async componentDidMount() {
+    // TODO
+  }
+
   render() {
-    const { comments, image, heading, description, author } = this.state;
+    const { comments, heading, description, author } = this.state;
     return (
       <CloseUpPageLayout {...this.state}>
         <div id={'close-up-wrapper'}>
           <div id={'close-up-content'}>
+            <div className="back-button" onClick={this.props.history.goBack}>
+              <h2>Go Back</h2>
+            </div>
             <div id={'close-up-left-partition'}>
-              <img src={image} id={'close-up-image'} alt="" />
+              <img src={`${process.env.REACT_APP_SERVER}pins/download?pin=${this.props.match.params.id}`} id={'close-up-image'} alt="" />
             </div>
             <div id={'close-up-right-partition'}>
-              <h1>{heading}</h1>
+              <h1>{this.props.match.params.id}</h1>
               <h3>{description}</h3>
               <h5>Pin by {author}</h5>
               <ul id={'close-up-comments'}>
-                {comments.map((el) => (
-                  <div id={'comment-wrapper'}>
+                {comments.map((el, id) => (
+                  <div id={'comment-wrapper'} key={id}>
                     <img id={'comment-avatar'} src="https://placeimg.com/480/460/any" alt="" />
                     <div id={'comment-box'}>
                       <div id={'comment-head'}>

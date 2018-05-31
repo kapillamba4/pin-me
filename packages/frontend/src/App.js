@@ -9,6 +9,8 @@ import FileUpload from './components/FileUpload';
 import HorizontalCarousal from './components/HorizontalCarousal';
 import styled from 'styled-components';
 import Masonry from './containers/Masonry';
+import { Switch, Route } from 'react-router-dom';
+import pin from './actions/pin';
 
 const AppLayout = styled.div`
   left: 50%;
@@ -20,21 +22,32 @@ const AppLayout = styled.div`
   }
 `;
 
+const AppContent = (props) => (
+  <AppLayout>
+    <div id={'app-content'}>
+      <HeaderBar />
+      {React.createElement('div', { style: { height: '34px' } })}
+      <FileUpload uploadPin={props.addPin} />
+      <HorizontalCarousal />
+      <Masonry />
+      <DropDown title={'Select location'} />
+    </div>
+  </AppLayout>
+);
+
 class App extends Component {
   render() {
     return (
-      <AppLayout>
-        {/*<CloseUpPage />*/}
-        <HeaderBar />
-        <div id={'app-content'}>
-          <HorizontalCarousal />
-          <Masonry />
-          <FileUpload />
-          <DropDown />
-        </div>
-      </AppLayout>
+      <Switch>
+        <Route exact path="/" component={AppContent} extraProps={this.props} />
+        <Route exact path="/pin/:id" component={CloseUpPage} />
+      </Switch>
     );
   }
 }
 
-export default connect(null, null)(App);
+const mapStateToProps = state => ({ ...state.pins });
+const matchDispatchToProps = dispatch =>
+  bindActionCreators({ ...pin }, dispatch);
+
+export default connect(mapStateToProps, matchDispatchToProps)(App);
